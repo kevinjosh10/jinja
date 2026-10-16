@@ -13,6 +13,8 @@ Unreleased
 -   Use modern packaging metadata with ``pyproject.toml`` instead of ``setup.cfg``.
     :pr:`1793`
 -   Use ``flit_core`` instead of ``setuptools`` as build backend.
+-   Support any :class:`collections.abc.Mapping` in the ``urlencode`` filter,
+    such as :class:`~collections.UserDict`. :issue:`2269`
 
 
 Version 3.1.6

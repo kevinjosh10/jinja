@@ -1,5 +1,6 @@
 import random
 from collections import namedtuple
+from collections import UserDict
 
 import pytest
 from markupsafe import Markup
@@ -686,6 +687,12 @@ class TestFilter:
             ({0: 1}, "0=1"),
             ([("a b/c", "a b/c")], "a+b%2Fc=a+b%2Fc"),
             ("a b/c", "a%20b/c"),
+            (UserDict({"f": 1}), "f=1"),
+            (
+                UserDict({"A": "PersonA@123.com", "B": "PersonB@123.com"}),
+                "A=PersonA%40123.com&amp;B=PersonB%40123.com",
+            ),
+            (UserDict({}), ""),
         ],
     )
     def test_urlencode(self, value, expect):

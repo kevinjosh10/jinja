@@ -160,12 +160,16 @@ def do_urlencode(
     "%2F" equivalently in paths. If you need quoted slashes, use the
     ``|replace("/", "%2F")`` filter.
 
+    .. versionchanged:: 3.2.0
+        Support any :class:`collections.abc.Mapping` such as
+        :class:`~collections.UserDict`.
+
     .. versionadded:: 2.7
     """
     if isinstance(value, str) or not isinstance(value, abc.Iterable):
         return url_quote(value)
 
-    if isinstance(value, dict):
+    if isinstance(value, abc.Mapping):
         items: t.Iterable[tuple[str, t.Any]] = value.items()
     else:
         items = value  # type: ignore
